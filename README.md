@@ -1,7 +1,5 @@
 # Snowflake-Medallion-Data-Warehouse-Architecture
 
-# Enterprise Snowflake Medallion Data Warehouse Architecture
-
 ## Project Overview
 This project implements a multi-layer Medallion Data Warehouse architecture (Bronze, Silver, and Gold) built on Snowflake to ingest, clean, model, and analyze retail e-commerce datasets. The primary objective is to transform raw batch transactions into an optimized Star Schema datamart to serve low-latency business intelligence analytics and executive reporting.
 
@@ -89,6 +87,8 @@ Transforms normalized relational tables into an optimized Star Schema designed f
 * `FACT_SALES`: Transaction-level fact table containing foreign keys joined to dimension surrogates, quantitative metrics (`QUANTITY`, `UNIT_PRICE`), and calculated gross revenue attributes (`QUANTITY * UNIT_PRICE`).
 
 ---
+
+<img src="https://github.com/MuhammadHuzaifaG/Snowflake-Medallion-Data-Warehouse-Architecture/blob/main/charts/Total%20Revenue%20%26%20Orders%20by%20Product%20Category.PNG" />
 
 ## Key Analytics & Business Results
 
