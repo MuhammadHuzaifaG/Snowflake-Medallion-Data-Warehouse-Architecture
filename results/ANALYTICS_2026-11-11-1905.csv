@@ -1,0 +1,24 @@
+﻿State,City,Store Name,Product Category,Orders,Units Sold,Gross Revenue,State Total Revenue,Category Rank (In State),Global Revenue Share %
+NY,New York,Downtown Flagship Center,Electronics,2,4,"     $799.96","   $1,147.92",1,24.68%
+NY,Brooklyn,Brooklyn Heights Hub,Furniture,1,1,"     $250.00","   $1,147.92",2,7.71%
+NY,New York,Manhattan West Mall,Home & Kitchen,1,3,"      $74.97","   $1,147.92",3,2.31%
+NY,New York,Manhattan West Mall,Apparel & Travel,1,1,"      $22.99","   $1,147.92",4,0.71%
+IL,Chicago,Magnificent Mile Branch,Health & Fitness,1,3,"     $419.99","     $692.96",1,12.96%
+IL,Chicago,Chicago Loop Store,Electronics,1,1,"     $199.99","     $692.96",2,6.17%
+IL,Chicago,Magnificent Mile Branch,Home & Kitchen,1,1,"      $44.99","     $692.96",3,1.39%
+IL,Chicago,Chicago Loop Store,Apparel & Travel,1,1,"      $27.99","     $692.96",4,0.86%
+CA,Los Angeles,Hollywood Boulevard Outlet,Electronics,2,4,"     $219.96","     $544.93",1,6.79%
+CA,San Francisco,San Francisco Financial Center,Furniture,1,1,"     $189.99","     $544.93",2,5.86%
+CA,San Diego,San Diego Gaslamp Hub,Home & Kitchen,1,1,"      $74.99","     $544.93",3,2.31%
+CA,Los Angeles,Los Angeles Downtown Plaza,Health & Fitness,1,1,"      $59.99","     $544.93",4,1.85%
+TX,Austin,Austin Downtown Market,Home & Kitchen,1,2,"      $91.98","     $213.95",1,2.84%
+TX,Dallas,Dallas Market Center,Electronics,1,1,"      $59.99","     $213.95",2,1.85%
+TX,Austin,Austin Downtown Market,Electronics,1,1,"      $34.99","     $213.95",3,1.08%
+TX,Houston,Houston Galleria Branch,Health & Fitness,1,1,"      $26.99","     $213.95",4,0.83%
+GA,Atlanta,Atlanta Midtown Plaza,Home & Kitchen,1,2,"     $130.00","     $170.00",1,4.01%
+GA,Atlanta,Atlanta Midtown Plaza,Health & Fitness,1,1,"      $40.00","     $170.00",2,1.23%
+WA,Bellevue,Bellevue Square Outlet,Health & Fitness,1,1,"      $99.99","     $131.98",1,3.08%
+WA,Bellevue,Bellevue Square Outlet,Apparel & Travel,1,1,"      $31.99","     $131.98",2,0.99%
+PA,Philadelphia,Philadelphia Center City,Home & Kitchen,2,3,"     $129.97","     $129.97",1,4.01%
+CO,Denver,Denver Cherry Creek Mall,Home & Kitchen,1,1,"     $119.99","     $119.99",1,3.70%
+AZ,Phoenix,Phoenix Biltmore Store,Electronics,1,3,"      $89.97","      $89.97",1,2.78%
