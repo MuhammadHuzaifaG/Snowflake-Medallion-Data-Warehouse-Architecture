@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Snowflake Medallion Data Warehouse Architecture</title>
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 0;
+        padding: 40px;
+        background: #f6f8fb;
+        color: #1f2937;
+      }
+      .page {
+        max-width: 980px;
+        margin: 0 auto;
+        background: #ffffff;
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+        border-radius: 12px;
+        padding: 40px 48px;
+      }
+      h1, h2, h3 {
+        color: #0f172a;
+      }
+      h1 {
+        font-size: 30px;
+        margin-bottom: 8px;
+      }
+      h2 {
+        margin-top: 28px;
+        font-size: 22px;
+        border-bottom: 2px solid #e5e7eb;
+        padding-bottom: 8px;
+      }
+      h3 {
+        font-size: 18px;
+        margin-top: 18px;
+      }
+      p, li {
+        font-size: 15px;
+        line-height: 1.7;
+      }
+      ul {
+        padding-left: 22px;
+      }
+      .badge {
+        display: inline-block;
+        background: #dbeafe;
+        color: #1d4ed8;
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+      .code-box {
+        background: #0f172a;
+        color: #e2e8f0;
+        padding: 16px 18px;
+        border-radius: 10px;
+        overflow-x: auto;
+        font-family: Consolas, Monaco, monospace;
+        font-size: 13px;
+        line-height: 1.6;
+      }
+      .two-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+      }
+      .card {
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        padding: 16px 18px;
+        background: #f8fafc;
+      }
+      @media (max-width: 700px) {
+        body {
+          padding: 20px;
+        }
+        .page {
+          padding: 24px 18px;
+        }
+        .two-col {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="badge">Snowflake Project</div>
+      <h1>Snowflake Medallion Data Warehouse Architecture</h1>
+      <p><strong>Repository:</strong> MuhammadHuzaifaG/Snowflake-Medallion-Data-Warehouse-Architecture</p>
+
+      <h2>Project Overview</h2>
+      <p>
+        This project implements a multi-layer Medallion Data Warehouse architecture (Bronze, Silver, and Gold)
+        built on Snowflake to ingest, clean, model, and analyze retail e-commerce datasets. The architecture is
+        designed to support data quality, traceability, and high-performance analytical querying across enterprise
+        retail operations.
+      </p>
+
+      <h2>Business Problem & Core Challenge</h2>
+      <p>
+        Modern enterprise retail systems generate raw transactional data across decoupled sources. Uncleaned records,
+        dynamic formats, and missing relationships make it difficult to build a reliable, analytics-ready data platform.
+        This project addresses those challenges by standardizing ingestion and transformation practices while ensuring
+        clean, business-friendly reporting models.
+      </p>
+
+      <h2>Data Pipeline Architecture</h2>
+      <pre class="code-box">[ Raw Batch Data ]
+    │
+    ▼
+[ BRONZE SCHEMA ] ──> Raw Stage & Stream Buffering
+    │
+    ▼
+[ SILVER SCHEMA ] ──> Cleansed Entities (Customers, Products, Stores, Employees, Orders)
+    │
+    ▼
+[ GOLD SCHEMA   ] ──> Dimensional Modeling (DIM_CUSTOMER, DIM_PRODUCT, DIM_STORE, DIM_DATE, FACT_SALES)</pre>
+
+      <h2>Technical Stack</h2>
+      <ul>
+        <li><strong>Cloud Data Platform:</strong> Snowflake</li>
+        <li><strong>Compute Management:</strong> COMPUTE_WH (Auto-Suspending X-Small Virtual Warehouse)</li>
+        <li><strong>Data Modeling:</strong> Dimensional Star Schema Modeling (Kimball Methodology)</li>
+        <li><strong>Language:</strong> SQL (Snowflake dialect)</li>
+        <li><strong>Ingestion & Transformation:</strong> Batch INSERT INTO, TRUNCATE / LOAD, window aggregations</li>
+      </ul>
+
+      <h2>Layer-by-Layer Implementation</h2>
+
+      <div class="two-col">
+        <div class="card">
+          <h3>1. Database & Schema Initialization</h3>
+          <p>The project creates the main database and segregates logical processing areas:</p>
+          <div class="code-box">CREATE DATABASE IF NOT EXISTS SNOWFLAKE_DB;
+USE DATABASE SNOWFLAKE_DB;
+
+CREATE SCHEMA IF NOT EXISTS BRONZE_LANDING;
+CREATE SCHEMA IF NOT EXISTS SILVER_TRANSFORMED;
+CREATE SCHEMA IF NOT EXISTS GOLD_DATAMART;</div>
+        </div>
+
+        <div class="card">
+          <h3>2. Bronze Layer</h3>
+          <p>Acts as a landing area for raw incoming data and preserves the original structured records before validation.</p>
+        </div>
+
+        <div class="card">
+          <h3>3. Silver Layer</h3>
+          <p>Establishes cleaned relational tables with strict typing, nullability rules, and domain integrity.</p>
+          <ul>
+            <li>Customers</li>
+            <li>Products</li>
+            <li>Stores</li>
+            <li>Employees</li>
+            <li>Orders</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>4. Gold Layer</h3>
+          <p>Transforms normalized relational tables into a star schema optimized for BI and analytical consumption.</p>
+          <ul>
+            <li>DIM_CUSTOMER</li>
+            <li>DIM_PRODUCT</li>
+            <li>DIM_STORE</li>
+            <li>DIM_DATE</li>
+            <li>FACT_SALES</li>
+          </ul>
+        </div>
+      </div>
+
+      <h2>Key Analytics & Business Outcomes</h2>
+      <ol>
+        <li><strong>Category Performance:</strong> Electronics is the largest revenue driver; Home & Kitchen has the highest transaction velocity.</li>
+        <li><strong>Geographic Distribution:</strong> Major metro states such as NY, CA, and IL account for a significant share of sales.</li>
+        <li><strong>Pipeline Efficiency:</strong> Set-based SQL transformations reduce warehouse runtime while maintaining traceability.</li>
+      </ol>
+
+      <h2>What Was Learned</h2>
+      <ul>
+        <li>Schema design in Snowflake and metadata optimization</li>
+        <li>Dimensional modeling with surrogate keys and date-spine generation</li>
+        <li>ELT best practices using layer isolation and bulk processing</li>
+      </ul>
+
+      <h2>Example Query: Category Performance</h2>
+      <div class="code-box">SELECT
+    dp.CATEGORY AS "Product Category",
+    COUNT(DISTINCT fs.ORDER_ID) AS "Total Orders",
+    SUM(fs.QUANTITY) AS "Units Sold",
+    ROUND(SUM(fs.GROSS_REVENUE), 2) AS "Total Revenue"
+FROM GOLD_DATAMART.FACT_SALES fs
+JOIN GOLD_DATAMART.DIM_PRODUCT dp ON fs.PRODUCT_KEY = dp.PRODUCT_KEY
+WHERE fs.STATUS IN ('COMPLETED', 'DELIVERED', 'SHIPPED')
+GROUP BY dp.CATEGORY
+ORDER BY "Total Revenue" DESC;</div>
+
+      <h2>Example Query: Daily Revenue Trend</h2>
+      <div class="code-box">SELECT
+    dd.FULL_DATE AS "Date",
+    dd.DAY_OF_WEEK AS "Day",
+    COUNT(DISTINCT fs.ORDER_ID) AS "Total Orders",
+    ROUND(SUM(fs.GROSS_REVENUE), 2) AS "Daily Revenue"
+FROM GOLD_DATAMART.FACT_SALES fs
+JOIN GOLD_DATAMART.DIM_DATE dd ON fs.DATE_KEY = dd.DATE_KEY
+WHERE fs.STATUS IN ('COMPLETED', 'DELIVERED', 'SHIPPED')
+GROUP BY dd.FULL_DATE, dd.DAY_OF_WEEK
+ORDER BY dd.FULL_DATE ASC;</div>
+
+      <p style="margin-top: 36px; font-size: 13px; color: #475569;">
+        Generated report for export to PDF via browser print functionality.
+      </p>
+    </div>
+  </body>
+</html>
